@@ -1,0 +1,2 @@
+# ressyn
+Syndicate your resource.
