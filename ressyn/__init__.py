@@ -1,6 +1,7 @@
 from .sniffer_installer import SnifferInstaller
 from .aggregator import Aggregator
-from . import response
+from .shortcut import make_response
+from . import string
 
 
 class Ressyn(object):
@@ -24,4 +25,4 @@ class Ressyn(object):
                 handler = self.handlers["default"]
             return handler(request)
         else:
-            return response.fail("Unknown request method")
+            return make_response("fail", string.UNKNOWN_REQUEST_METHOD)

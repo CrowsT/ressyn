@@ -1,6 +1,11 @@
+from .shortcut import make_response
+from . import string
+
+
 class Aggregator(object):
     def __init__(self, config):
         self.config = config
+        self.sniffers = dict()
 
         self.handlers = {
             "search book": self.search_book,
@@ -22,4 +27,8 @@ class Aggregator(object):
         pass
 
     def request_handler(self, request):
-        pass
+        if "request" in self.handlers:
+            handler = self.handlers[request["request"]]
+            return handler(request["content"])
+        else:
+            return make_response("fail", string.UNKNOWN_REQUEST_METHOD)
